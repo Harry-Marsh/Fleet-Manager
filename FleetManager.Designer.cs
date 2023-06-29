@@ -94,6 +94,7 @@
             CompSearchBtn.TabIndex = 22;
             CompSearchBtn.Text = "Search";
             CompSearchBtn.UseVisualStyleBackColor = true;
+            CompSearchBtn.Click += CompSearchBtn_Click;
             // 
             // CompClearBtn
             // 
@@ -116,7 +117,7 @@
             CompanySearchLbl.Size = new Size(199, 20);
             CompanySearchLbl.TabIndex = 21;
             CompanySearchLbl.Text = "Search By Company Details";
-            CompSearchBtn.Click += CompSearchBtn_Click;
+            
             // 
             // NameLbl
             // 

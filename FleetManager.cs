@@ -2,66 +2,11 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.Data;
+using System.Reflection;
 using System.Xml.Linq;
 
 namespace Fleet_Manager
 {
-    /// <summary>
-    /// Class for the Vehicle object containing its attributes.
-    ///  Registration Number, Make, Model, Fuel Type, Category, Latitude, Longitude
-    /// </summary>
-    public class Vehicle
-    {
-        //Declaring the attributes of a Vehicle
-        public string? RegistrationNumber { get; set; }
-        public string? Make { get; set; }
-        public string? Model { get; set; }
-        public string? FuelType { get; set; }
-        public string? Category { get; set; }
-        public double Lat { get; set; }
-        public double Lng { get; set; }
-
-        //adding company details so that it can be implemented into a list to be used to create a marker.
-        public string? Name { get; set; }
-        public string? Type { get; set; }
-
-        //constructor used to create a new object of the class vehicle.
-        public Vehicle(string registrationNumber, string make, string model, string fuelType, string category, double lat, double lng, string name, string type)
-        {
-            RegistrationNumber = registrationNumber;
-            Make = make;
-            Model = model;
-            FuelType = fuelType;
-            Category = category;
-            Lat = lat;
-            Lng = lng;
-            //Customer details
-            Name = name;
-            Type = type;
-        }
-    }
-
-    /// <summary>
-    /// Class for the Customer object containing its attributes.
-    ///  Name
-    /// </summary>
-    public class Customer
-    {
-        //Declaring the attributes of a Customer
-        public string? Name { get; set; }
-        public string? Type { get; set; }
-
-        //constructor used to create a new object of the class Customer.
-        public Customer(string name, string type)
-        {
-            Name = name;
-            Type = type;
-        }
-    }
-
-
-
-
 
     public partial class FleetManager : Form
     {
@@ -69,6 +14,60 @@ namespace Fleet_Manager
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Class for the Vehicle object containing its attributes.
+        ///  Registration Number, Make, Model, Fuel Type, Category, Latitude, Longitude
+        /// </summary>
+        public class Vehicle
+        {
+            //Declaring the attributes of a Vehicle
+            public string? RegistrationNumber { get; set; }
+            public string? Make { get; set; }
+            public string? Model { get; set; }
+            public string? FuelType { get; set; }
+            public string? Category { get; set; }
+            public double Lat { get; set; }
+            public double Lng { get; set; }
+
+            //adding company details so that it can be implemented into a list to be used to create a marker.
+            public string? Name { get; set; }
+            public string? Type { get; set; }
+
+            //constructor used to create a new object of the class vehicle.
+            public Vehicle(string registrationNumber, string make, string model, string fuelType, string category, double lat, double lng, string name, string type)
+            {
+                RegistrationNumber = registrationNumber;
+                Make = make;
+                Model = model;
+                FuelType = fuelType;
+                Category = category;
+                Lat = lat;
+                Lng = lng;
+                //Customer details
+                Name = name;
+                Type = type;
+            }
+        }
+
+        /// <summary>
+        /// Class for the Customer object containing its attributes.
+        ///  Name
+        /// </summary>
+        public class Customer
+        {
+            //Declaring the attributes of a Customer
+            public string? Name { get; set; }
+            public string? Type { get; set; }
+
+            //constructor used to create a new object of the class Customer.
+            public Customer(string name, string type)
+            {
+                Name = name;
+                Type = type;
+            }
+        }
+
 
         /// <summary>
         /// GMaps.net implementation. Builder for initializing the map and its starting parameters
@@ -237,7 +236,7 @@ namespace Fleet_Manager
         /// <param name="fuelType"></param>
         /// <param name="category"></param>
         /// <returns>List of vehicles that have matching values</returns>
-        private List<Vehicle> SearchVehicles(string registrationNumber, string make, string model, string fuelType, string category)
+        private List<Vehicle> SearchVehicles(string registrationNumber, string make, string model, string fuelType, string category, string name, string type)
         {
 
             //temp needs to be implemented properly... Vehicle data needs to be saved outside of the function.
@@ -350,17 +349,17 @@ namespace Fleet_Manager
 
         private void CompSearchBtn_Click(object sender, EventArgs e)
         {
+            string CompName = NameTxBx.Text;
+            string CompType = TypeTxBx.Text;
+
 
         }
 
         private void CompClearBtn_Click(object sender, EventArgs e)
         {
             //clears all entries in the form
-            RegistrationTxBx.Clear();
-            MakeTxBx.Clear();
-            ModelTxBx.Clear();
-            FuelTypeTxBx.Clear();
-            CatagoryLstbx.ClearSelected();
+            NameTxBx.Clear();
+            TypeTxBx.Clear();
 
             // Clear the map's overlays
             gMapControl1.Overlays.Clear();
