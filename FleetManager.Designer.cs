@@ -30,11 +30,12 @@
         {
             panel1 = new Panel();
             panel5 = new Panel();
+            CompSearchBtn = new Button();
+            CompClearBtn = new Button();
+            CompanySearchLbl = new Label();
+            NameLbl = new Label();
+            NameTxBx = new TextBox();
             panel4 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            TitleLbl = new Label();
             CatagoryLstbx = new ListBox();
             VehicleSearchLbl = new Label();
             CatagoryLbl = new Label();
@@ -48,11 +49,12 @@
             ModelTxBx = new TextBox();
             MakeTxBx = new TextBox();
             MakeLbl = new Label();
-            CompSearchBtn = new Button();
-            CompClearBtn = new Button();
-            CompanySearchLbl = new Label();
-            label1 = new Label();
-            textBox1 = new TextBox();
+            panel2 = new Panel();
+            TitleLbl = new Label();
+            panel3 = new Panel();
+            gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
+            CustomerType = new Label();
+            TypeTxBx = new TextBox();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
@@ -71,15 +73,65 @@
             // 
             // panel5
             // 
+            panel5.Controls.Add(CustomerType);
+            panel5.Controls.Add(TypeTxBx);
             panel5.Controls.Add(CompSearchBtn);
             panel5.Controls.Add(CompClearBtn);
             panel5.Controls.Add(CompanySearchLbl);
-            panel5.Controls.Add(label1);
-            panel5.Controls.Add(textBox1);
+            panel5.Controls.Add(NameLbl);
+            panel5.Controls.Add(NameTxBx);
             panel5.Location = new Point(18, 362);
             panel5.Name = "panel5";
             panel5.Size = new Size(219, 276);
             panel5.TabIndex = 1;
+            // 
+            // CompSearchBtn
+            // 
+            CompSearchBtn.AutoSize = true;
+            CompSearchBtn.Location = new Point(29, 130);
+            CompSearchBtn.Name = "CompSearchBtn";
+            CompSearchBtn.Size = new Size(75, 25);
+            CompSearchBtn.TabIndex = 22;
+            CompSearchBtn.Text = "Search";
+            CompSearchBtn.UseVisualStyleBackColor = true;
+            // 
+            // CompClearBtn
+            // 
+            CompClearBtn.AutoSize = true;
+            CompClearBtn.Location = new Point(114, 130);
+            CompClearBtn.Name = "CompClearBtn";
+            CompClearBtn.Size = new Size(75, 25);
+            CompClearBtn.TabIndex = 23;
+            CompClearBtn.Text = "Clear";
+            CompClearBtn.UseVisualStyleBackColor = true;
+            // 
+            // CompanySearchLbl
+            // 
+            CompanySearchLbl.AutoSize = true;
+            CompanySearchLbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            CompanySearchLbl.ForeColor = SystemColors.ButtonFace;
+            CompanySearchLbl.Location = new Point(11, 13);
+            CompanySearchLbl.Name = "CompanySearchLbl";
+            CompanySearchLbl.Size = new Size(199, 20);
+            CompanySearchLbl.TabIndex = 21;
+            CompanySearchLbl.Text = "Search By Company Details";
+            // 
+            // NameLbl
+            // 
+            NameLbl.AutoSize = true;
+            NameLbl.ForeColor = SystemColors.ButtonFace;
+            NameLbl.Location = new Point(34, 39);
+            NameLbl.Name = "NameLbl";
+            NameLbl.Size = new Size(108, 15);
+            NameLbl.TabIndex = 20;
+            NameLbl.Text = "Insert Client Name:";
+            // 
+            // NameTxBx
+            // 
+            NameTxBx.Location = new Point(34, 57);
+            NameTxBx.Name = "NameTxBx";
+            NameTxBx.Size = new Size(156, 23);
+            NameTxBx.TabIndex = 19;
             // 
             // panel4
             // 
@@ -100,59 +152,6 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(219, 329);
             panel4.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(TitleLbl);
-            panel2.Location = new Point(279, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(973, 67);
-            panel2.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(gMapControl1);
-            panel3.Location = new Point(279, 85);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(973, 584);
-            panel3.TabIndex = 2;
-            // 
-            // gMapControl1
-            // 
-            gMapControl1.Bearing = 0F;
-            gMapControl1.CanDragMap = true;
-            gMapControl1.EmptyTileColor = Color.Navy;
-            gMapControl1.GrayScaleMode = false;
-            gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            gMapControl1.LevelsKeepInMemory = 5;
-            gMapControl1.Location = new Point(3, 3);
-            gMapControl1.MarkersEnabled = true;
-            gMapControl1.MaxZoom = 2;
-            gMapControl1.MinZoom = 2;
-            gMapControl1.MouseWheelZoomEnabled = true;
-            gMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            gMapControl1.Name = "gMapControl1";
-            gMapControl1.NegativeMode = false;
-            gMapControl1.PolygonsEnabled = true;
-            gMapControl1.RetryLoadTile = 0;
-            gMapControl1.RoutesEnabled = true;
-            gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            gMapControl1.SelectedAreaFillColor = Color.FromArgb(33, 65, 105, 225);
-            gMapControl1.ShowTileGridLines = false;
-            gMapControl1.Size = new Size(970, 581);
-            gMapControl1.TabIndex = 0;
-            gMapControl1.Zoom = 0D;
-            // 
-            // TitleLbl
-            // 
-            TitleLbl.AutoSize = true;
-            TitleLbl.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            TitleLbl.ForeColor = SystemColors.ButtonFace;
-            TitleLbl.Location = new Point(307, 10);
-            TitleLbl.Name = "TitleLbl";
-            TitleLbl.Size = new Size(400, 45);
-            TitleLbl.TabIndex = 18;
-            TitleLbl.Text = "Hire Car Vehicle Manager";
             // 
             // CatagoryLstbx
             // 
@@ -183,7 +182,7 @@
             CatagoryLbl.Name = "CatagoryLbl";
             CatagoryLbl.Size = new Size(90, 15);
             CatagoryLbl.TabIndex = 28;
-            CatagoryLbl.Text = "Insert Catagory:";
+            CatagoryLbl.Text = "Insert Category:";
             // 
             // VehSearchBtn
             // 
@@ -273,53 +272,75 @@
             MakeLbl.TabIndex = 23;
             MakeLbl.Text = "Insert Make:";
             // 
-            // CompSearchBtn
+            // panel2
             // 
-            CompSearchBtn.AutoSize = true;
-            CompSearchBtn.Location = new Point(32, 86);
-            CompSearchBtn.Name = "CompSearchBtn";
-            CompSearchBtn.Size = new Size(75, 25);
-            CompSearchBtn.TabIndex = 22;
-            CompSearchBtn.Text = "Search";
-            CompSearchBtn.UseVisualStyleBackColor = true;
+            panel2.Controls.Add(TitleLbl);
+            panel2.Location = new Point(279, 12);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(973, 67);
+            panel2.TabIndex = 1;
             // 
-            // CompClearBtn
+            // TitleLbl
             // 
-            CompClearBtn.AutoSize = true;
-            CompClearBtn.Location = new Point(117, 86);
-            CompClearBtn.Name = "CompClearBtn";
-            CompClearBtn.Size = new Size(75, 25);
-            CompClearBtn.TabIndex = 23;
-            CompClearBtn.Text = "Clear";
-            CompClearBtn.UseVisualStyleBackColor = true;
+            TitleLbl.AutoSize = true;
+            TitleLbl.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            TitleLbl.ForeColor = SystemColors.ButtonFace;
+            TitleLbl.Location = new Point(307, 10);
+            TitleLbl.Name = "TitleLbl";
+            TitleLbl.Size = new Size(400, 45);
+            TitleLbl.TabIndex = 18;
+            TitleLbl.Text = "Hire Car Vehicle Manager";
             // 
-            // CompanySearchLbl
+            // panel3
             // 
-            CompanySearchLbl.AutoSize = true;
-            CompanySearchLbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            CompanySearchLbl.ForeColor = SystemColors.ButtonFace;
-            CompanySearchLbl.Location = new Point(11, 13);
-            CompanySearchLbl.Name = "CompanySearchLbl";
-            CompanySearchLbl.Size = new Size(199, 20);
-            CompanySearchLbl.TabIndex = 21;
-            CompanySearchLbl.Text = "Search By Company Details";
+            panel3.Controls.Add(gMapControl1);
+            panel3.Location = new Point(279, 85);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(973, 584);
+            panel3.TabIndex = 2;
             // 
-            // label1
+            // gMapControl1
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(34, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(108, 15);
-            label1.TabIndex = 20;
-            label1.Text = "Insert Client Name:";
+            gMapControl1.Bearing = 0F;
+            gMapControl1.CanDragMap = true;
+            gMapControl1.EmptyTileColor = Color.Navy;
+            gMapControl1.GrayScaleMode = false;
+            gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            gMapControl1.LevelsKeepInMemory = 5;
+            gMapControl1.Location = new Point(3, 3);
+            gMapControl1.MarkersEnabled = true;
+            gMapControl1.MaxZoom = 20;
+            gMapControl1.MinZoom = 2;
+            gMapControl1.MouseWheelZoomEnabled = true;
+            gMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            gMapControl1.Name = "gMapControl1";
+            gMapControl1.NegativeMode = false;
+            gMapControl1.PolygonsEnabled = true;
+            gMapControl1.RetryLoadTile = 0;
+            gMapControl1.RoutesEnabled = true;
+            gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            gMapControl1.SelectedAreaFillColor = Color.FromArgb(33, 65, 105, 225);
+            gMapControl1.ShowTileGridLines = false;
+            gMapControl1.Size = new Size(970, 581);
+            gMapControl1.TabIndex = 0;
+            gMapControl1.Zoom = 0D;
             // 
-            // textBox1
+            // CustomerType
             // 
-            textBox1.Location = new Point(34, 57);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(156, 23);
-            textBox1.TabIndex = 19;
+            CustomerType.AutoSize = true;
+            CustomerType.ForeColor = SystemColors.ButtonFace;
+            CustomerType.Location = new Point(34, 83);
+            CustomerType.Name = "CustomerType";
+            CustomerType.Size = new Size(108, 15);
+            CustomerType.TabIndex = 25;
+            CustomerType.Text = "Insert Client Name:";
+            // 
+            // TypeTxBx
+            // 
+            TypeTxBx.Location = new Point(34, 101);
+            TypeTxBx.Name = "TypeTxBx";
+            TypeTxBx.Size = new Size(156, 23);
+            TypeTxBx.TabIndex = 24;
             // 
             // FleetManager
             // 
@@ -332,6 +353,7 @@
             Controls.Add(panel1);
             Name = "FleetManager";
             Text = "Fleet Manager";
+            Load += FleetManager_Load;
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
@@ -368,7 +390,9 @@
         private Button CompSearchBtn;
         private Button CompClearBtn;
         private Label CompanySearchLbl;
-        private Label label1;
-        private TextBox textBox1;
+        private Label NameLbl;
+        private TextBox NameTxBx;
+        private Label CustomerType;
+        private TextBox TypeTxBx;
     }
 }
