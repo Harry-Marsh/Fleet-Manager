@@ -366,6 +366,8 @@ namespace Fleet_Manager
             ModelTxBx.Clear();
             FuelTypeTxBx.Clear();
             CatagoryLstbx.ClearSelected();
+            NameTxBx.Clear();
+            TypeLstBx.ClearSelected();
 
             // Clear the map's overlays
             gMapControl1.Overlays.Clear();
