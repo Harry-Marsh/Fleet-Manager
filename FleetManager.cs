@@ -147,7 +147,15 @@ namespace Fleet_Manager
             return $"Vehicle Details\n------------------------\nReg #: {vehicle.RegistrationNumber}\nMake: {vehicle.Make}\nModel: {vehicle.Model}\nFuelType: {vehicle.FuelType}\nCategory: {vehicle.Category}\n\nCustomer Details\n------------------------\nCustomer Name: {vehicle.Name}\nOwner Type: {vehicle.Type}";
         }
 
-        //Setting Default Style for Information pop-up box     
+        /// <summary>
+        /// Setting Default Style for Information pop-up box     
+        /// </summary>
+        /// <param name="marker"></param>
+        /// <param name="font"></param>
+        /// <param name="foreground"></param>
+        /// <param name="background"></param>
+        /// <param name="border"></param>
+        /// <param name="textPadding"></param>
         private void SetMarkerToolTipStyle(GMapMarker marker, Font font, Brush foreground, Brush background, Pen border, Size textPadding)
         {
             //Setting the Style of Pop-up box
