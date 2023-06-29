@@ -350,7 +350,7 @@ namespace Fleet_Manager
 
             //Bug fix allows the map to update and all the markers to be displayed.
             gMapControl1.Zoom += 1;
-            gMapControl1.Zoom -= 1;
+            gMapControl1.Zoom -= 1; 
         }
 
         /// <summary>
