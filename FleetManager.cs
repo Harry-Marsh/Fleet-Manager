@@ -228,6 +228,15 @@ namespace Fleet_Manager
             DisplayMatchingVehiclesOnMap(matchingVehicles);
         }
 
+        /// <summary>
+        /// On Button Click... Take Values from search boxes and compare them to each of the values of the vehicle.
+        /// </summary>
+        /// <param name="registrationNumber"></param>
+        /// <param name="make"></param>
+        /// <param name="model"></param>
+        /// <param name="fuelType"></param>
+        /// <param name="category"></param>
+        /// <returns>List of vehicles that have matching values</returns>
         private List<Vehicle> SearchVehicles(string registrationNumber, string make, string model, string fuelType, string category)
         {
 
@@ -315,7 +324,11 @@ namespace Fleet_Manager
             gMapControl1.Zoom -= 1;
         }
 
-
+        /// <summary>
+        /// On click... Empty all of the text fields clear current overlay and display overlay containing all vehicles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VehClearBtn_Click(object sender, EventArgs e)
         {
 
