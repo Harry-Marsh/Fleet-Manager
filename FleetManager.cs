@@ -183,17 +183,16 @@ namespace Fleet_Manager
                 SetMarkerToolTipStyle(marker, tooltipFont, tooltipForeground, tooltipBackground, tooltipBorder, tooltipTextPadding);
             }
 
-            //Generate markers on the map
+            //Add the overlay containing the markers to the map
             gMapControl1.Overlays.Add(MarkerOverlay);
 
-            //Bug fix allows the map to update and all the markers to be displayed.
+            //Bug fix allows the map to update and all the markers to be displayed without this no markers will show unless user scrolls the map.
             gMapControl1.Zoom += 1;
             gMapControl1.Zoom -= 1;
 
             //Updates map
-            //gMapControl1.Update();
+            gMapControl1.Update();
             gMapControl1.Refresh();
-
         }
     }
 }
