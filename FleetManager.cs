@@ -317,6 +317,7 @@ namespace Fleet_Manager
             gMapControl1.Overlays.Add(markersOverlay);
 
             // Refresh the map
+            gMapControl1.Update();
             gMapControl1.Refresh();
 
             //Bug fix allows the map to update and all the markers to be displayed.
@@ -331,8 +332,45 @@ namespace Fleet_Manager
         /// <param name="e"></param>
         private void VehClearBtn_Click(object sender, EventArgs e)
         {
+            //clears all entries in the form
+            RegistrationTxBx.Clear();
+            MakeTxBx.Clear();
+            ModelTxBx.Clear();
+            FuelTypeTxBx.Clear();
+            CatagoryLstbx.ClearSelected();
+
+            // Clear the map's overlays
+            gMapControl1.Overlays.Clear();
+
+            //Displays all the markers.
+            DisplayAllMarkers();
+            gMapControl1.Update();
+            gMapControl1.Refresh();
+        }
+
+        private void CompSearchBtn_Click(object sender, EventArgs e)
+        {
 
         }
+
+        private void CompClearBtn_Click(object sender, EventArgs e)
+        {
+            //clears all entries in the form
+            RegistrationTxBx.Clear();
+            MakeTxBx.Clear();
+            ModelTxBx.Clear();
+            FuelTypeTxBx.Clear();
+            CatagoryLstbx.ClearSelected();
+
+            // Clear the map's overlays
+            gMapControl1.Overlays.Clear();
+
+            //Displays all the markers.
+            DisplayAllMarkers();
+            gMapControl1.Update();
+            gMapControl1.Refresh();
+        }
+
 
 
 
