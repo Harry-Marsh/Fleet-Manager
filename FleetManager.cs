@@ -99,7 +99,7 @@ namespace Fleet_Manager
             string EstateCar = "D:/VS Projects/Fleet Manager/Media/sedan3.png";
             string Van = "D:/VS Projects/Fleet Manager/Media/truck3.png";
 
-            GMarkerGoogle marker; 
+            GMarkerGoogle marker;
 
             //If else Statements to Declare which icon should be displayed based of the Vehicle.Catogory Attribute
             if (vehicle.Category == "Small Car")
@@ -169,11 +169,11 @@ namespace Fleet_Manager
             List<Vehicle> vehicles = new List<Vehicle>();
 
             // Add vehicles to the list
-            vehicles.Add(new Vehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998,"John West LTD","Business"));
-            vehicles.Add(new Vehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841,"David Tuna", "Personal"));
-            vehicles.Add(new Vehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973,"John West LTD", "Business"));
-            vehicles.Add(new Vehicle("GH78 ABC", "Honda", "Civic", "Petrol", "Small Car", 50.38492710376232, -4.135480901453018,"Robert Dean", "Personal"));
-            vehicles.Add(new Vehicle("JK90 DEF", "Toyota", "Yaris", "Petrol", "Estate Car", 50.37759356140106, -4.129642309585571,"Adam Snow", "Personal"));
+            vehicles.Add(new Vehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998, "John West LTD", "Business"));
+            vehicles.Add(new Vehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841, "David Tuna", "Personal"));
+            vehicles.Add(new Vehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973, "John West LTD", "Business"));
+            vehicles.Add(new Vehicle("GH78 ABC", "Honda", "Civic", "Petrol", "Small Car", 50.38492710376232, -4.135480901453018, "Robert Dean", "Personal"));
+            vehicles.Add(new Vehicle("JK90 DEF", "Toyota", "Yaris", "Petrol", "Estate Car", 50.37759356140106, -4.129642309585571, "Adam Snow", "Personal"));
 
             //Create a new list to store all the markers that need to be created based on the Vehicle object
             List<GMarkerGoogle> markers = new List<GMarkerGoogle>();
@@ -218,10 +218,12 @@ namespace Fleet_Manager
             string model = ModelTxBx.Text;
             string fuelType = FuelTypeTxBx.Text;
             string category = CatagoryLstbx.SelectedItem?.ToString();
+            string name = NameTxBx.Text;
+            string type = TypeLstBx.SelectedItem?.ToString();
 
 
             // Perform the search using the parameters
-            List<Vehicle> matchingVehicles = SearchVehicles(registrationNumber, make, model, fuelType, category);
+            List<Vehicle> matchingVehicles = SearchVehicles(registrationNumber, make, model, fuelType, category, name, type);
 
             // Display the matching vehicles on the map or perform any other action
             DisplayMatchingVehiclesOnMap(matchingVehicles);
@@ -235,6 +237,8 @@ namespace Fleet_Manager
         /// <param name="model"></param>
         /// <param name="fuelType"></param>
         /// <param name="category"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
         /// <returns>List of vehicles that have matching values</returns>
         private List<Vehicle> SearchVehicles(string registrationNumber, string make, string model, string fuelType, string category, string name, string type)
         {
@@ -281,6 +285,16 @@ namespace Fleet_Manager
                 }
 
                 if (!string.IsNullOrEmpty(category) && vehicle.Category != category)
+                {
+                    isMatch = false;
+                }
+
+                if (!string.IsNullOrEmpty(name) && vehicle.Name != name)
+                {
+                    isMatch = false;
+                }
+
+                if (!string.IsNullOrEmpty(type) && vehicle.Type != type)
                 {
                     isMatch = false;
                 }
@@ -346,32 +360,6 @@ namespace Fleet_Manager
             gMapControl1.Update();
             gMapControl1.Refresh();
         }
-
-        private void CompSearchBtn_Click(object sender, EventArgs e)
-        {
-            string CompName = NameTxBx.Text;
-            string CompType = TypeTxBx.Text;
-
-
-        }
-
-        private void CompClearBtn_Click(object sender, EventArgs e)
-        {
-            //clears all entries in the form
-            NameTxBx.Clear();
-            TypeTxBx.Clear();
-
-            // Clear the map's overlays
-            gMapControl1.Overlays.Clear();
-
-            //Displays all the markers.
-            DisplayAllMarkers();
-            gMapControl1.Update();
-            gMapControl1.Refresh();
-        }
-
-
-
 
     }
 }

@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel5 = new Panel();
-            CompSearchBtn = new Button();
-            CompClearBtn = new Button();
+            CustomerType = new Label();
             CompanySearchLbl = new Label();
             NameLbl = new Label();
             NameTxBx = new TextBox();
@@ -53,10 +51,8 @@
             TitleLbl = new Label();
             panel3 = new Panel();
             gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            CustomerType = new Label();
-            TypeTxBx = new TextBox();
+            TypeLstBx = new ListBox();
             panel1.SuspendLayout();
-            panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -64,66 +60,38 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(261, 657);
             panel1.TabIndex = 0;
             // 
-            // panel5
+            // CustomerType
             // 
-            panel5.Controls.Add(CustomerType);
-            panel5.Controls.Add(TypeTxBx);
-            panel5.Controls.Add(CompSearchBtn);
-            panel5.Controls.Add(CompClearBtn);
-            panel5.Controls.Add(CompanySearchLbl);
-            panel5.Controls.Add(NameLbl);
-            panel5.Controls.Add(NameTxBx);
-            panel5.Location = new Point(18, 362);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(219, 276);
-            panel5.TabIndex = 1;
-            // 
-            // CompSearchBtn
-            // 
-            CompSearchBtn.AutoSize = true;
-            CompSearchBtn.Location = new Point(29, 130);
-            CompSearchBtn.Name = "CompSearchBtn";
-            CompSearchBtn.Size = new Size(75, 25);
-            CompSearchBtn.TabIndex = 22;
-            CompSearchBtn.Text = "Search";
-            CompSearchBtn.UseVisualStyleBackColor = true;
-            CompSearchBtn.Click += CompSearchBtn_Click;
-            // 
-            // CompClearBtn
-            // 
-            CompClearBtn.AutoSize = true;
-            CompClearBtn.Location = new Point(114, 130);
-            CompClearBtn.Name = "CompClearBtn";
-            CompClearBtn.Size = new Size(75, 25);
-            CompClearBtn.TabIndex = 23;
-            CompClearBtn.Text = "Clear";
-            CompClearBtn.UseVisualStyleBackColor = true;
-            CompClearBtn.Click += CompClearBtn_Click;
+            CustomerType.AutoSize = true;
+            CustomerType.ForeColor = SystemColors.ButtonFace;
+            CustomerType.Location = new Point(33, 388);
+            CustomerType.Name = "CustomerType";
+            CustomerType.Size = new Size(125, 15);
+            CustomerType.TabIndex = 25;
+            CustomerType.Text = "Insert Ownership type:";
             // 
             // CompanySearchLbl
             // 
             CompanySearchLbl.AutoSize = true;
             CompanySearchLbl.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             CompanySearchLbl.ForeColor = SystemColors.ButtonFace;
-            CompanySearchLbl.Location = new Point(11, 13);
+            CompanySearchLbl.Location = new Point(10, 314);
             CompanySearchLbl.Name = "CompanySearchLbl";
             CompanySearchLbl.Size = new Size(199, 20);
             CompanySearchLbl.TabIndex = 21;
             CompanySearchLbl.Text = "Search By Company Details";
-            
             // 
             // NameLbl
             // 
             NameLbl.AutoSize = true;
             NameLbl.ForeColor = SystemColors.ButtonFace;
-            NameLbl.Location = new Point(34, 39);
+            NameLbl.Location = new Point(33, 334);
             NameLbl.Name = "NameLbl";
             NameLbl.Size = new Size(108, 15);
             NameLbl.TabIndex = 20;
@@ -131,29 +99,34 @@
             // 
             // NameTxBx
             // 
-            NameTxBx.Location = new Point(34, 57);
+            NameTxBx.Location = new Point(33, 352);
             NameTxBx.Name = "NameTxBx";
             NameTxBx.Size = new Size(156, 23);
             NameTxBx.TabIndex = 19;
             // 
             // panel4
             // 
+            panel4.Controls.Add(TypeLstBx);
+            panel4.Controls.Add(CustomerType);
             panel4.Controls.Add(CatagoryLstbx);
             panel4.Controls.Add(VehicleSearchLbl);
-            panel4.Controls.Add(CatagoryLbl);
+            panel4.Controls.Add(CompanySearchLbl);
             panel4.Controls.Add(VehSearchBtn);
+            panel4.Controls.Add(CatagoryLbl);
+            panel4.Controls.Add(NameLbl);
             panel4.Controls.Add(FuelTypeLbl);
             panel4.Controls.Add(VehClearBtn);
             panel4.Controls.Add(FuelTypeTxBx);
+            panel4.Controls.Add(NameTxBx);
             panel4.Controls.Add(RegistrationTxBx);
             panel4.Controls.Add(ModelLbl);
             panel4.Controls.Add(RegistrationLbl);
             panel4.Controls.Add(ModelTxBx);
             panel4.Controls.Add(MakeTxBx);
             panel4.Controls.Add(MakeLbl);
-            panel4.Location = new Point(18, 10);
+            panel4.Location = new Point(18, 73);
             panel4.Name = "panel4";
-            panel4.Size = new Size(219, 329);
+            panel4.Size = new Size(219, 581);
             panel4.TabIndex = 0;
             // 
             // CatagoryLstbx
@@ -190,7 +163,7 @@
             // VehSearchBtn
             // 
             VehSearchBtn.AutoSize = true;
-            VehSearchBtn.Location = new Point(29, 287);
+            VehSearchBtn.Location = new Point(29, 475);
             VehSearchBtn.Name = "VehSearchBtn";
             VehSearchBtn.Size = new Size(75, 25);
             VehSearchBtn.TabIndex = 17;
@@ -211,7 +184,7 @@
             // VehClearBtn
             // 
             VehClearBtn.AutoSize = true;
-            VehClearBtn.Location = new Point(114, 287);
+            VehClearBtn.Location = new Point(114, 475);
             VehClearBtn.Name = "VehClearBtn";
             VehClearBtn.Size = new Size(75, 25);
             VehClearBtn.TabIndex = 18;
@@ -330,22 +303,15 @@
             gMapControl1.TabIndex = 0;
             gMapControl1.Zoom = 0D;
             // 
-            // CustomerType
+            // TypeLstBx
             // 
-            CustomerType.AutoSize = true;
-            CustomerType.ForeColor = SystemColors.ButtonFace;
-            CustomerType.Location = new Point(34, 83);
-            CustomerType.Name = "CustomerType";
-            CustomerType.Size = new Size(108, 15);
-            CustomerType.TabIndex = 25;
-            CustomerType.Text = "Insert Client Name:";
-            // 
-            // TypeTxBx
-            // 
-            TypeTxBx.Location = new Point(34, 101);
-            TypeTxBx.Name = "TypeTxBx";
-            TypeTxBx.Size = new Size(156, 23);
-            TypeTxBx.TabIndex = 24;
+            TypeLstBx.FormattingEnabled = true;
+            TypeLstBx.ItemHeight = 15;
+            TypeLstBx.Items.AddRange(new object[] { "Personal", "Business" });
+            TypeLstBx.Location = new Point(33, 406);
+            TypeLstBx.Name = "TypeLstBx";
+            TypeLstBx.Size = new Size(156, 34);
+            TypeLstBx.TabIndex = 30;
             // 
             // FleetManager
             // 
@@ -360,8 +326,6 @@
             Text = "Fleet Manager";
             Load += FleetManager_Load;
             panel1.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel2.ResumeLayout(false);
@@ -374,7 +338,6 @@
 
         private Panel panel1;
         private Panel panel4;
-        private Panel panel5;
         private Panel panel2;
         private Panel panel3;
         private ListBox CatagoryLstbx;
@@ -392,12 +355,10 @@
         private Label MakeLbl;
         private Label TitleLbl;
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
-        private Button CompSearchBtn;
-        private Button CompClearBtn;
         private Label CompanySearchLbl;
         private Label NameLbl;
         private TextBox NameTxBx;
         private Label CustomerType;
-        private TextBox TypeTxBx;
+        private ListBox TypeLstBx;
     }
 }
