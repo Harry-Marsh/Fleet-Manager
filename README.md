@@ -1,16 +1,16 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/Harry-Marsh/FleetManager">
+  <a href="https://github.com/Harry-Marsh/Fleet-Manager">
     <img src="media/delivery-van.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">C# Interview Project</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A hire car Fleet Management Application.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Harry-Marsh/Fleet-Manager"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
