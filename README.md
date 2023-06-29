@@ -47,7 +47,7 @@ This documentation and application Demonstrates and discusses the skills, method
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section Includes the enviroment as well as the 3rd part packages used to create this application.
 * [Visual Studios 2022 .Net 6.0](https://visualstudio.microsoft.com/)
 * [GMaps.Net](https://www.nuget.org/packages/GMap.NET.WinForms)
 
@@ -56,33 +56,20 @@ This section should list any major frameworks that you built your project using.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow the installation instructions to get a released version of the application
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-
+1. Head over to [/Release](https://github.com/Harry-Marsh/Fleet-Manager/tree/master/Release)
+2. Downlaod the folder Named Fleet Manager
+3. Run the Fleet Manager.exe File
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+This project is used to demonstrate techincal skill, knowledge and understanding of programming with C# And windows forms.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more indepth infomations, please refer to the [Documentation](https://github.com/Harry-Marsh/Fleet-Manager/tree/master/Documentation)_
 
 
 
