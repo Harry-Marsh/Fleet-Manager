@@ -1,8 +1,8 @@
 namespace Fleet_Manager
 {
-    public partial class Form1 : Form
+    public partial class FleetManager : Form
     {
-        public Form1()
+        public FleetManager()
         {
             InitializeComponent();
         }
