@@ -2,6 +2,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System.Data;
+using System.Xml.Linq;
 
 namespace Fleet_Manager
 {
@@ -9,7 +10,7 @@ namespace Fleet_Manager
     /// Class for the Vehicle object containing its attributes.
     ///  Registration Number, Make, Model, Fuel Type, Category, Latitude, Longitude
     /// </summary>
-    public class ObjVehicle
+    public class Vehicle
     {
         //Declaring the attributes of a Vehicle
         public string? RegistrationNumber { get; set; }
@@ -20,8 +21,12 @@ namespace Fleet_Manager
         public double Lat { get; set; }
         public double Lng { get; set; }
 
+        //adding company details so that it can be implemented into a list to be used to create a marker.
+        public string? Name { get; set; }
+        public string? Type { get; set; }
+
         //constructor used to create a new object of the class vehicle.
-        public ObjVehicle(string registrationNumber, string make, string model, string fuelType, string category, double lat, double lng)
+        public Vehicle(string registrationNumber, string make, string model, string fuelType, string category, double lat, double lng, string name, string type)
         {
             RegistrationNumber = registrationNumber;
             Make = make;
@@ -30,6 +35,9 @@ namespace Fleet_Manager
             Category = category;
             Lat = lat;
             Lng = lng;
+            //Customer details
+            Name = name;
+            Type = type;
         }
     }
 
@@ -37,14 +45,14 @@ namespace Fleet_Manager
     /// Class for the Customer object containing its attributes.
     ///  Name
     /// </summary>
-    public class ObjCustomer
+    public class Customer
     {
         //Declaring the attributes of a Customer
         public string? Name { get; set; }
         public string? Type { get; set; }
 
         //constructor used to create a new object of the class Customer.
-        public ObjCustomer(string name, string type)
+        public Customer(string name, string type)
         {
             Name = name;
             Type = type;
@@ -85,7 +93,7 @@ namespace Fleet_Manager
         /// <param name="latitude"></param>
         /// <param name="longitude"></param>
         /// <returns>Marker with positions and icon based on vehicle type</returns>
-        private GMarkerGoogle CreateVehicleMarker(ObjVehicle vehicle, double latitude, double longitude)
+        private GMarkerGoogle CreateVehicleMarker(Vehicle vehicle, double latitude, double longitude)
         {
             //declaring storage location of Specific Icons
             string SmallCar = "D:/VS Projects/Fleet Manager/Media/car3.png";
@@ -126,10 +134,11 @@ namespace Fleet_Manager
         /// </summary>
         /// <param name="vehicle"></param>
         /// <returns>String for a tool tip with vehicle/customer details</returns>
-        private string GetTooltipText(ObjVehicle vehicle)
+        private string GetTooltipText(Vehicle vehicle)
         {
             //Mouse Hover Details Formatting 
-            return $"Vehicle Details\n------------------------\nReg #: {vehicle.RegistrationNumber}\nMake: {vehicle.Make}\nModel: {vehicle.Model}\nFuelType: {vehicle.FuelType}\nCategory: {vehicle.Category}\n\nClient Name: John";
+            //all details are stored in a list based on the vehicle class... need to add ability to merge 2 classes to create a list of vehicles
+            return $"Vehicle Details\n------------------------\nReg #: {vehicle.RegistrationNumber}\nMake: {vehicle.Make}\nModel: {vehicle.Model}\nFuelType: {vehicle.FuelType}\nCategory: {vehicle.Category}\n\nCustomer Details\n------------------------\nCustomer Name: {vehicle.Name}\nOwner Type: {vehicle.Type}";
         }
 
         //Setting Default Style for Information pop-up box     
@@ -156,13 +165,16 @@ namespace Fleet_Manager
             Size tooltipTextPadding = new Size(10, 10);
 
             //Creates a list called vehicles that will store all defined vehicles
-            List<ObjVehicle> vehicles = new List<ObjVehicle>();
+            List<Vehicle> vehicles = new List<Vehicle>();
+
+
             // Add vehicles to the list
-            vehicles.Add(new ObjVehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998));
-            vehicles.Add(new ObjVehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841));
-            vehicles.Add(new ObjVehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973));
-            vehicles.Add(new ObjVehicle("GH78 ABC", "Honda", "Civic", "Petrol", "Small Car", 50.38492710376232, -4.135480901453018));
-            vehicles.Add(new ObjVehicle("JK90 DEF", "Chevrolet", "Cruze", "Petrol", "Estate Car", 50.37759356140106, -4.129642309585571));
+            //all details are stored in a list based on the vehicle class... need to add ability to merge 2 classes to create a list of vehicles
+            vehicles.Add(new Vehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998,"John West LTD","Business"));
+            vehicles.Add(new Vehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841,"David Tuna", "Personal"));
+            vehicles.Add(new Vehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973,"John West LTD", "Business"));
+            vehicles.Add(new Vehicle("GH78 ABC", "Honda", "Civic", "Petrol", "Small Car", 50.38492710376232, -4.135480901453018,"Robert Dean", "Personal"));
+            vehicles.Add(new Vehicle("JK90 DEF", "Toyota", "Yaris", "Petrol", "Estate Car", 50.37759356140106, -4.129642309585571,"Adam Snow", "Personal"));
 
             //Create a new list to store all the markers that need to be created based on the Vehicle object
             List<GMarkerGoogle> markers = new List<GMarkerGoogle>();
@@ -171,7 +183,7 @@ namespace Fleet_Manager
             GMapOverlay MarkerOverlay = new GMapOverlay("markers");
 
             // Create the markers using the CreateVehicleMarker function
-            foreach (ObjVehicle vehicle in vehicles)
+            foreach (Vehicle vehicle in vehicles)
             {
                 GMarkerGoogle marker = CreateVehicleMarker(vehicle, vehicle.Lat, vehicle.Lng);
                 markers.Add(marker);
