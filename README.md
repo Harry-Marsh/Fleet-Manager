@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Harry-Marsh/Fleet-Manager">
-    <img src="media/delivery-van.png" alt="Logo" width="80" height="80">
+    <img src="Media/delivery-van.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">C# Interview Project</h3>
