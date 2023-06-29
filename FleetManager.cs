@@ -101,21 +101,28 @@ namespace Fleet_Manager
 
             GMarkerGoogle marker;
 
+            Bitmap smallCarImage = new Bitmap(SmallCar);
+            Bitmap estateCarImage = new Bitmap(EstateCar);
+            Bitmap vanImage = new Bitmap(Van);
+
             //If else Statements to Declare which icon should be displayed based of the Vehicle.Catogory Attribute
             if (vehicle.Category == "Small Car")
             {
                 //Create new marker with location and Icon choice
-                marker = new GMarkerGoogle(new GMap.NET.PointLatLng(latitude, longitude), new Bitmap(SmallCar));
+                marker = new GMarkerGoogle(new GMap.NET.PointLatLng(latitude, longitude), smallCarImage);
+                marker.Offset = new Point(smallCarImage.Width / -2, smallCarImage.Height / -2);
             }
             else if (vehicle.Category == "Estate Car")
             {
                 //Create new marker with location and Icon choice
-                marker = new GMarkerGoogle(new GMap.NET.PointLatLng(latitude, longitude), new Bitmap(EstateCar));
+                marker = new GMarkerGoogle(new GMap.NET.PointLatLng(latitude, longitude), estateCarImage);
+                marker.Offset = new Point(estateCarImage.Width / -2, estateCarImage.Height / -2);
             }
             else if (vehicle.Category == "Van")
             {
                 //Create new marker with location and Icon choice
-                marker = new GMarkerGoogle(new GMap.NET.PointLatLng(latitude, longitude), new Bitmap(Van));
+                marker = new GMarkerGoogle(new GMap.NET.PointLatLng(latitude, longitude), vanImage);
+                marker.Offset = new Point(vanImage.Width / -2, vanImage.Height / -2);
             }
             else
             {
