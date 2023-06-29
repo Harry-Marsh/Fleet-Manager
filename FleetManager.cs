@@ -74,6 +74,8 @@ namespace Fleet_Manager
             gMapControl1.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance; //setting map type as Google maps others available e.g bing
             gMapControl1.Position = new GMap.NET.PointLatLng(50.39946444099402, -4.133717229736622); //sets starting position on load
             gMapControl1.Zoom = 12; // setting start up zoom
+
+            DisplayAllMarkers(); //function to display markers on the map.
         }
 
         /// <summary>
@@ -86,9 +88,9 @@ namespace Fleet_Manager
         private GMarkerGoogle CreateVehicleMarker(ObjVehicle vehicle, double latitude, double longitude)
         {
             //declaring storage location of Specific Icons
-            string SmallCar = "D:/VS Projects/Hire Car Fleet Tracker/Media/car3.png";
-            string EstateCar = "D:/VS Projects/Hire Car Fleet Tracker/Media/sedan3.png";
-            string Van = "D:/VS Projects/Hire Car Fleet Tracker/Media/truck3.png";
+            string SmallCar = "D:/VS Projects/Fleet Manager/Media/car3.png";
+            string EstateCar = "D:/VS Projects/Fleet Manager/Media/sedan3.png";
+            string Van = "D:/VS Projects/Fleet Manager/Media/truck3.png";
 
             GMarkerGoogle marker; 
 
@@ -139,6 +141,59 @@ namespace Fleet_Manager
             marker.ToolTip.Fill = background;
             marker.ToolTip.Stroke = border;
             marker.ToolTip.TextPadding = textPadding;
+        }
+        /// <summary>
+        /// Function to Display markers on the map
+        /// </summary>
+        private void DisplayAllMarkers()
+        {
+
+            // Create the font and styling for tool tips
+            Font tooltipFont = new Font("Roboto", 11, FontStyle.Regular); //Set Font,Size,Style
+            Brush tooltipForeground = Brushes.Black; //set foreground colour/ text colour
+            Brush tooltipBackground = Brushes.White; //set background colour
+            Pen tooltipBorder = Pens.Black; //set boarder colour
+            Size tooltipTextPadding = new Size(10, 10);
+
+            //Creates a list called vehicles that will store all defined vehicles
+            List<ObjVehicle> vehicles = new List<ObjVehicle>();
+            // Add vehicles to the list
+            vehicles.Add(new ObjVehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998));
+            vehicles.Add(new ObjVehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841));
+            vehicles.Add(new ObjVehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973));
+            vehicles.Add(new ObjVehicle("GH78 ABC", "Honda", "Civic", "Petrol", "Small Car", 50.38492710376232, -4.135480901453018));
+            vehicles.Add(new ObjVehicle("JK90 DEF", "Chevrolet", "Cruze", "Petrol", "Estate Car", 50.37759356140106, -4.129642309585571));
+
+            //Create a new list to store all the markers that need to be created based on the Vehicle object
+            List<GMarkerGoogle> markers = new List<GMarkerGoogle>();
+
+            //Adding ability to add markers
+            GMapOverlay MarkerOverlay = new GMapOverlay("markers");
+
+            // Create the markers using the CreateVehicleMarker function
+            foreach (ObjVehicle vehicle in vehicles)
+            {
+                GMarkerGoogle marker = CreateVehicleMarker(vehicle, vehicle.Lat, vehicle.Lng);
+                markers.Add(marker);
+                MarkerOverlay.Markers.Add(marker);
+            }
+
+            foreach (GMarkerGoogle marker in markers)
+            {
+                SetMarkerToolTipStyle(marker, tooltipFont, tooltipForeground, tooltipBackground, tooltipBorder, tooltipTextPadding);
+            }
+
+            //Generate markers on the map
+            gMapControl1.Overlays.Add(MarkerOverlay);
+
+            //Bug fix allows the map to update and all the markers to be displayed.
+            gMapControl1.Zoom += 1;
+            gMapControl1.Zoom -= 1;
+
+            //Updates map
+            //gMapControl1.Update();
+            gMapControl1.Refresh();
+
         }
     }
 }
