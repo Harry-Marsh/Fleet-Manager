@@ -193,6 +193,7 @@
             VehSearchBtn.TabIndex = 17;
             VehSearchBtn.Text = "Search";
             VehSearchBtn.UseVisualStyleBackColor = true;
+            VehSearchBtn.Click += VehSearchBtn_Click;
             // 
             // FuelTypeLbl
             // 
@@ -213,6 +214,7 @@
             VehClearBtn.TabIndex = 18;
             VehClearBtn.Text = "Clear";
             VehClearBtn.UseVisualStyleBackColor = true;
+            VehClearBtn.Click += VehClearBtn_Click;
             // 
             // FuelTypeTxBx
             // 

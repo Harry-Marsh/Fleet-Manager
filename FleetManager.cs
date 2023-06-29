@@ -164,12 +164,12 @@ namespace Fleet_Manager
             Pen tooltipBorder = Pens.Black; //set boarder colour
             Size tooltipTextPadding = new Size(10, 10);
 
+
+            //all details are stored in a list based on the vehicle class... need to add ability to merge 2 classes to create a list of vehicles
             //Creates a list called vehicles that will store all defined vehicles
             List<Vehicle> vehicles = new List<Vehicle>();
 
-
             // Add vehicles to the list
-            //all details are stored in a list based on the vehicle class... need to add ability to merge 2 classes to create a list of vehicles
             vehicles.Add(new Vehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998,"John West LTD","Business"));
             vehicles.Add(new Vehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841,"David Tuna", "Personal"));
             vehicles.Add(new Vehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973,"John West LTD", "Business"));
@@ -189,7 +189,7 @@ namespace Fleet_Manager
                 markers.Add(marker);
                 MarkerOverlay.Markers.Add(marker);
             }
-
+            //adds the format to each of the markers before they are displayed on the map
             foreach (GMarkerGoogle marker in markers)
             {
                 SetMarkerToolTipStyle(marker, tooltipFont, tooltipForeground, tooltipBackground, tooltipBorder, tooltipTextPadding);
@@ -206,6 +206,123 @@ namespace Fleet_Manager
             gMapControl1.Update();
             gMapControl1.Refresh();
         }
+        /// <summary>
+        /// Function for button click. on click store in the text boxes to create a new list of matching vehicles. Display those vehicles on the map as markers.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VehSearchBtn_Click(object sender, EventArgs e)
+        {
+            // Retrieve the search parameters
+            string registrationNumber = RegistrationTxBx.Text;
+            string make = MakeTxBx.Text;
+            string model = ModelTxBx.Text;
+            string fuelType = FuelTypeTxBx.Text;
+            string category = CatagoryLstbx.SelectedItem?.ToString();
+
+
+            // Perform the search using the parameters
+            List<Vehicle> matchingVehicles = SearchVehicles(registrationNumber, make, model, fuelType, category);
+
+            // Display the matching vehicles on the map or perform any other action
+            DisplayMatchingVehiclesOnMap(matchingVehicles);
+        }
+
+        private List<Vehicle> SearchVehicles(string registrationNumber, string make, string model, string fuelType, string category)
+        {
+
+            //temp needs to be implemented properly... Vehicle data needs to be saved outside of the function.
+            //Creates a list called vehicles that will store all defined vehicles
+            List<Vehicle> vehicles = new List<Vehicle>();
+
+            // Add vehicles to the list
+            vehicles.Add(new Vehicle("DE34 LMN", "Ford", "Focus", "Petrol", "Small Car", 50.37941922201558, -4.13156834670998, "John West LTD", "Business"));
+            vehicles.Add(new Vehicle("AB12 XYZ", "Toyota", "Corolla", "Diesel", "Estate Car", 50.38271866313328, -4.142071723899841, "David Tuna", "Personal"));
+            vehicles.Add(new Vehicle("FG56 PQR", "Ford", "Transit", "Diesel", "Van", 50.37517072091145, -4.118627957575973, "John West LTD", "Business"));
+            vehicles.Add(new Vehicle("GH78 ABC", "Honda", "Civic", "Petrol", "Small Car", 50.38492710376232, -4.135480901453018, "Robert Dean", "Personal"));
+            vehicles.Add(new Vehicle("JK90 DEF", "Toyota", "Yaris", "Petrol", "Estate Car", 50.37759356140106, -4.129642309585571, "Adam Snow", "Personal"));
+
+            //Creates a new list for sorted vehicles to be stored
+            List<Vehicle> matchingVehicles = new List<Vehicle>();
+
+            //Adding vehicles to the matching vehicles list if any of the attributes match what was inputed in the search
+            foreach (Vehicle vehicle in vehicles)
+            {
+
+                //if textbox string is not empty and does not contain a correct value vehicle is not a match (not added to the matchingVehicles list)
+                bool isMatch = true;
+
+                if (!string.IsNullOrEmpty(registrationNumber) && !vehicle.RegistrationNumber.Contains(registrationNumber))
+                {
+                    isMatch = false;
+                }
+
+                if (!string.IsNullOrEmpty(make) && !vehicle.Make.Contains(make))
+                {
+                    isMatch = false;
+                }
+
+                if (!string.IsNullOrEmpty(model) && !vehicle.Model.Contains(model))
+                {
+                    isMatch = false;
+                }
+
+                if (!string.IsNullOrEmpty(fuelType) && !vehicle.FuelType.Contains(fuelType))
+                {
+                    isMatch = false;
+                }
+
+                if (!string.IsNullOrEmpty(category) && vehicle.Category != category)
+                {
+                    isMatch = false;
+                }
+
+                if (isMatch)
+                {
+                    matchingVehicles.Add(vehicle);
+                }
+            }
+
+            return matchingVehicles;
+        }
+
+        /// <summary>
+        /// Function to clear all markers from the map create a new overlay and create new markers out of the matching searches list.
+        /// </summary>
+        /// <param name="matchingVehicles"></param>
+        private void DisplayMatchingVehiclesOnMap(List<Vehicle> matchingVehicles)
+        {
+            // Clear existing markers from the map
+            gMapControl1.Overlays.Clear();
+
+            // Create new markers for the matching vehicles and add them to the map
+            GMapOverlay markersOverlay = new GMapOverlay("markers");
+
+            foreach (Vehicle vehicle in matchingVehicles)
+            {
+                GMarkerGoogle marker = CreateVehicleMarker(vehicle, vehicle.Lat, vehicle.Lng);
+                markersOverlay.Markers.Add(marker);
+            }
+
+            //add overlay to the map
+            gMapControl1.Overlays.Add(markersOverlay);
+
+            // Refresh the map
+            gMapControl1.Refresh();
+
+            //Bug fix allows the map to update and all the markers to be displayed.
+            gMapControl1.Zoom += 1;
+            gMapControl1.Zoom -= 1;
+        }
+
+
+        private void VehClearBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
     }
 }
 
